@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Let's Learn</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+   
+<main class="container">
+
+    <div class="hero-section">
+
+        <!-- INPUT CARD -->
+
+        <section class="input-card">
+
+            <div class="logo">✦ Let's Learn</div>
+
+            <h1>Hi there!</h1>
+
+            <p>Let's Learn Together</p>
+
+            <input
+                type="number"
+                id="number"
+                placeholder="Enter a number"
+                min="1"
+                max="100"
+            >
+
+            <button id="generateBtn">
+                Generate <span>→</span>
+            </button>
+
+            <p id="error"></p>
+
+        </section>
+
+
+        <!-- CARTOON BOY -->
+
+        <div class="mascot">
+
+            <img src="./Cheerful Purple Hoodie Boy Waving.png" alt="Learning Boy">
+
+        </div>
+
+    </div>
+
+
+    <!-- POPUP OVERLAY -->
+
+    <div class="overlay" id="overlay">
+
+        <div class="popup">
+
+            <div class="popup-header">
+
+                <div>
+                    <h2>Your Tables ✨</h2>
+                    <p id="tableInfo"></p>
+                </div>
+
+                <button class="close-btn" id="closeBtn">
+                    ✕
+                </button>
+
+            </div>
+
+            <div class="table-container" id="result"></div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+    <script src="./js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+
+/* ==============================
+   1. ROOT & RESET
+============================== */
+
+:root {
+    --purple: #7a35ff;
+    --purple-dark: #6422e8;
+    --purple-light: #f0eaff;
+    --light: #f5f3fa;
+    --white: #ffffff;
+    --dark: #24202e;
+    --gray: #888;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* ==============================
+   2. MAIN CONTAINER
+============================== */
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.hero-section {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+
+/* ==============================
+   3. INPUT CARD
+============================== */
+
+.input-card {
+    width: 350px;
+    flex-shrink: 0;
+
+    background: var(--white);
+    padding: 35px 30px;
+    border-radius: 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-shadow: 0 15px 50px #0000000c;
+}
+
+.logo {
+    color: var(--purple);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.input-card h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.input-card > p {
+    color: var(--gray);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+
+/* ==============================
+   4. INPUT FIELD
+============================== */
+
+.input-card input {
+    width: 100%;
+    padding: 15px;
+
+    border: 2px solid #eee;
+    border-radius: 12px;
+
+    outline: none;
+    font-size: 15px;
+
+    transition: 0.3s ease;
+}
+
+.input-card input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 4px #7a35ff15;
+}
+
+
+/* ==============================
+   5. GENERATE BUTTON
+============================== */
+
+#generateBtn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+
+    background: var(--purple);
+    color: var(--white);
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#generateBtn span {
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+#generateBtn:hover {
+    background: var(--purple-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px #7a35ff40;
+}
+
+#generateBtn:active {
+    transform: scale(0.97);
+}
+
+#error {
+    color: #e63946;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+
+/* ==============================
+   6. CARTOON MASCOT
+============================== */
+
+.mascot {
+    width: 350px;
+    height: 450px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: mascotFloat 3s ease-in-out infinite;
+}
+
+.mascot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+
+
+/* ==============================
+   7. POPUP OVERLAY
+============================== */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+
+    background: #17102280;
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    z-index: 1000;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ==============================
+   8. POPUP WINDOW
+============================== */
+
+.popup {
+    width: min(100%, 1100px);
+    max-height: 80vh;
+
+    background: var(--light);
+    border-radius: 25px;
+    padding: 25px;
+
+    overflow-y: auto;
+
+    box-shadow: 0 25px 80px #00000040;
+
+    opacity: 0;
+    transform: scale(0.5) translateY(30px);
+
+    transition:
+        transform 0.45s cubic-bezier(.2, .8, .2, 1),
+        opacity 0.3s ease;
+}
+
+.overlay.active .popup {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+
+/* ==============================
+   9. POPUP HEADER
+============================== */
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.popup-header h2 {
+    color: var(--purple);
+    font-size: 24px;
+}
+
+.popup-header p {
+    color: var(--gray);
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+
+/* ==============================
+   10. CLOSE BUTTON
+============================== */
+
+.close-btn {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #e8ddff;
+    color: var(--purple);
+
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.close-btn:hover {
+    background: var(--purple);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+
+/* ==============================
+   11. TABLE GRID
+============================== */
+
+.table-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+    align-items: start;
+}
+
+
+/* ==============================
+   12. TABLE CARDS
+============================== */
+
+.table-box {
+    background: var(--white);
+
+    padding: 20px;
+    border-radius: 18px;
+
+    border: 1px solid #e8e0fa;
+
+    min-height: 350px;
+
+    box-shadow: 0 5px 20px #00000008;
+
+    opacity: 0;
+    transform: scale(0.5);
+    transform-origin: center;
+
+    animation: cardPopup 0.5s cubic-bezier(.2, .8, .2, 1) forwards;
+}
+
+@keyframes cardPopup {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.table-box:hover {
+    border-color: var(--purple);
+    box-shadow: 0 10px 25px #7a35ff20;
+}
+
+
+/* ==============================
+   13. TABLE CARD HEADING
+============================== */
+
+.table-box h3 {
+    text-align: center;
+
+    color: var(--purple);
+    background: var(--purple-light);
+
+    padding: 11px;
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+
+/* ==============================
+   14. TABLE NUMBERS
+============================== */
+
+.table-box p {
+    font-size: 14px;
+    line-height: 2;
+
+    color: #555;
+
+    border-bottom: 1px solid #f2f0f5;
+}
+
+
+/* ==============================
+   15. SCROLLBAR
+============================== */
+
+.popup::-webkit-scrollbar {
+    width: 7px;
+}
+
+.popup::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.popup::-webkit-scrollbar-thumb {
+    background: #cbb5ff;
+    border-radius: 20px;
+}
+
+.popup::-webkit-scrollbar-thumb:hover {
+    background: var(--purple);
+}
+
+
+/* ==============================
+   16. TABLET RESPONSIVE
+============================== */
+
+@media (max-width: 1000px) {
+    .table-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero-section {
+        gap: 25px;
+    }
+
+    .mascot {
+        width: 300px;
+        height: 400px;
+    }
+}
+
+
+/* ==============================
+   17. MOBILE RESPONSIVE
+============================== */
+
+@media (max-width: 700px) {
+
+    .container {
+        padding: 20px;
+    }
+
+    .hero-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .input-card {
+        width: min(100%, 350px);
+        padding: 30px 25px;
+    }
+
+    .mascot {
+        width: 230px;
+        height: 260px;
+    }
+
+    .table-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .popup {
+        padding: 18px;
+        max-height: 85vh;
+    }
+
+    .table-box {
+        padding: 15px;
+        min-height: 320px;
+    }
+}
+
+
+/* ==============================
+   18. SMALL MOBILE
+============================== */
+
+@media (max-width: 400px) {
+
+    .table-container {
+        grid-template-columns: 1fr;
+    }
+
+    .popup {
+        max-height: 85vh;
+        padding: 15px;
+    }
+
+    .popup-header h2 {
+        font-size: 20px;
+    }
+
+    .input-card h1 {
+        font-size: 28px;
+    }
+}
+
+
+/* ==============================
+   19. REDUCED MOTION
+============================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .mascot {
+        animation: none;
+    }
+
+    .overlay,
+    .popup,
+    .table-box {
+        transition: none;
+        animation: none;
+    }
+
+    .overlay.active .popup,
+    .table-box {
+        opacity: 1;
+        transform: none;
+    }
+}
